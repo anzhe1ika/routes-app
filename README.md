@@ -16,8 +16,6 @@
 
 ## ✨ Функціональні можливості
 
-### ✅ Реалізовані функції (Лаб. 5)
-
 #### 1. **Система створення маршруту (Wizard)**
 - 6-крокова форма з валідацією полів
 - Збереження прогресу між кроками через Context API
@@ -92,115 +90,59 @@ cd marshrutyzator
 2. **Встановлення залежностей**
 ```bash
 npm install
-# або
-yarn install
 ```
 
 3. **Запуск dev-сервера**
 ```bash
 npm run dev
-# або
-yarn dev
 ```
 
 Додаток буде доступний за адресою `http://localhost:5173`
 
-4. **Білд для продакшену**
-```bash
-npm run build
-# або
-yarn build
-```
-
-5. **Попередній перегляд production білду**
-```bash
-npm run preview
-# або
-yarn preview
-```
-
----
 
 ## 📁 Структура проекту
-marshrutyzator/
-├── src/
-│   ├── components/
-│   │   ├── ui/                    # Базові UI компоненти
-│   │   │   ├── button.tsx
-│   │   │   └── input.tsx
-│   │   ├── wizard/                # Кроки створення маршруту
-│   │   │   ├── Step1.tsx          # Базові дані
-│   │   │   ├── Step2.tsx          # Точки маршруту
-│   │   │   ├── Step3.tsx          # Транспорт
-│   │   │   ├── Step4.tsx          # Проживання
-│   │   │   ├── Step5.tsx          # Огляд
-│   │   │   ├── Step6.tsx          # Експорт
-│   │   │   └── ProgressIndicator.tsx
-│   │   ├── Header.tsx
-│   │   └── ErrorBoundary.tsx
-│   ├── contexts/
-│   │   └── WizardContext.tsx      # State management для wizard
-│   ├── hooks/
-│   │   ├── useFormValidation.ts   # Валідація форм
-│   │   ├── useAutoSave.ts         # Автозбереження
-│   │   └── useUnsavedChangesWarning.ts
-│   ├── pages/
-│   │   ├── App.tsx                # Головна сторінка
-│   │   ├── RouteWizardPage.tsx    # Wizard створення маршруту
-│   │   ├── RoutesListPage.tsx     # Список маршрутів
-│   │   ├── HotelsPage.tsx         # Пошук готелів
-│   │   ├── HotelDetailsPage.tsx   # Деталі готелю
-│   │   ├── ProfilePage.tsx        # Профіль користувача
-│   │   ├── LoginPage.tsx          # Вхід
-│   │   └── RegisterPage.tsx       # Реєстрація
-│   ├── data/
-│   │   └── mockData.ts            # Тестові дані
-│   ├── constants/
-│   │   └── theme.ts               # Кольори та константи
-│   ├── lib/
-│   │   └── utils.ts               # Утиліти
-│   ├── router.tsx                 # Конфігурація маршрутів
-│   ├── main.tsx                   # Entry point
-│   └── index.css                  # Глобальні стилі
-├── public/
-├── package.json
-├── tsconfig.json
-├── vite.config.ts
-├── tailwind.config.js
-└── README.md
+src/
+├── components/
+│   ├── ui/                    # UI компоненти (Button, Input)
+│   ├── wizard/                # Компоненти майстра маршруту
+│   │   ├── Step1.tsx         # Базові дані
+│   │   ├── Step2.tsx         # Точки маршруту
+│   │   ├── Step3.tsx         # Транспорт
+│   │   ├── Step4.tsx         # Проживання
+│   │   ├── Step5.tsx         # Огляд
+│   │   ├── Step6.tsx         # Експорт
+│   │   ├── PointModal.tsx    # Модальне вікно точки
+│   │   └── ProgressIndicator.tsx
+│   ├── Header.tsx            # Шапка сайту
+│   └── ErrorBoundary.tsx     # Обробка помилок
+├── contexts/
+│   ├── AuthContext.tsx       # Контекст автентифікації
+│   └── WizardContext.tsx     # Контекст майстра
+├── services/
+│   ├── routeService.ts       # Сервіс маршрутів
+│   ├── hotelService.ts       # Сервіс готелів
+│   ├── transportService.ts   # Сервіс транспорту
+│   └── poiService.ts         # Сервіс пам'яток
+├── pages/
+│   ├── LoginPage.tsx
+│   ├── RegisterPage.tsx
+│   ├── VerifyEmailPage.tsx
+│   ├── ForgotPasswordPage.tsx
+│   ├── ResetPasswordPage.tsx
+│   ├── ProfilePage.tsx
+│   ├── RouteWizardPage.tsx
+│   ├── RoutesList.tsx
+│   ├── HotelsPage.tsx
+│   ├── HotelsDetailPage.tsx
+│   └── POIPage.tsx
+├── hooks/
+│   ├── useAutoSave.ts
+│   ├── useFormValidation.ts
+│   └── useUnsavedChangesWarning.ts
+└── data/
+    └── mockData.ts
 
----
-
-## 🎯 Виконання вимог
-
-### Функціональні вимоги (FR)
-
-| ID | Вимога | Статус | Опис реалізації |
-|----|--------|--------|-----------------|
-| FR-1 | Створення маршруту | ✅ | 6-крокова форма з валідацією |
-| FR-2 | Додавання точок | ✅ | Drag-and-drop, редагування, видалення |
-| FR-3 | Вибір транспорту | ✅ | Пошук та порівняння варіантів |
-| FR-4 | Вибір проживання | ✅ | Фільтри, карта, деталі готелю |
-| FR-5 | Перегляд розкладу | ✅ | Детальний огляд по днях |
-| FR-6 | Експорт маршруту | 🔄 | PDF export (в розробці) |
-| FR-7 | Збереження маршрутів | ✅ | LocalStorage + Context API |
-| FR-8 | Профіль користувача | ✅ | Редагування даних |
-
-### Нефункціональні вимоги (NFR)
-
-| ID | Вимога | Статус | Опис реалізації |
-|----|--------|--------|-----------------|
-| NFR-1 | Продуктивність | ✅ | React 18, оптимізовані компоненти |
-| NFR-2 | Надійність | ✅ | Error Boundary, валідація, автозбереження |
-| NFR-3 | Зручність (UX) | ✅ | Інтуїтивний wizard, прогрес-бар |
-| NFR-4 | Доступність (a11y) | ✅ | ARIA labels, keyboard navigation |
-| NFR-5 | Адаптивність | ✅ | Mobile-first підхід, Tailwind breakpoints |
-| NFR-6 | Масштабованість | ✅ | Модульна архітектура, Context API |
-| NFR-7 | Підтримка | ✅ | TypeScript, коментарі, документація |
-
----
-
-## 🔧 Інтеграція компонентів (Лаб. 5)
+## 🔧 Інтеграція компонентів
 
 ### Реалізовані інтеграції
 
@@ -223,47 +165,3 @@ marshrutyzator/
    - Попередження при виході
    - Підтвердження втрати даних
    - Browser beforeunload event
-
----
-
-## 📝 Використання
-
-### Створення нового маршруту
-
-1. Натисніть "Створити маршрут" на головній сторінці
-2. Заповніть базові дані (крок 1):
-   - Напрям подорожі
-   - Діапазон дат
-   - Орієнтовний бюджет
-3. Додайте точки маршруту (крок 2)
-4. Оберіть транспорт (крок 3)
-5. Виберіть проживання (крок 4)
-6. Перегляньте та підтвердіть (крок 5)
-7. Експортуйте або збережіть (крок 6)
-
-### Автозбереження
-
-Ваш прогрес автоматично зберігається кожні 3 секунди. Якщо ви випадково закриєте вкладку, при поверненні система запропонує відновити незавершений маршрут.
-
----
-
-## 🧪 Тестування
-
-### Manual Testing Checklist
-
-- [ ] Створення маршруту працює
-- [ ] Валідація форм спрацьовує
-- [ ] Автозбереження працює
-- [ ] Error Boundary ловить помилки
-- [ ] Попередження при виході працює
-- [ ] Адаптивний дизайн на мобільних
-- [ ] Доступність (keyboard navigation)
-
----
-
-## 👥 Команда
-
-- **Розробник**: [Ваше ім'я]
-- **Університет**: [Назва університету]
-- **Курс**: [Курс/рік]
-- **Предмет**: Лабораторна робота №5
